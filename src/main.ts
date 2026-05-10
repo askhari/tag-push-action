@@ -1,4 +1,4 @@
-import {parse} from 'csv-parse/sync'
+import {parse} from 'csv-parse/lib/sync'
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
 
@@ -32,8 +32,13 @@ async function run(): Promise<void> {
       source,
       ...destination
     ])
-  } catch (error: any) {
-    core.setFailed(error.message)
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      core.setFailed(error.message)
+      return
+    }
+
+    core.setFailed('Unknown error occurred')
   }
 }
 
