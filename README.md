@@ -41,11 +41,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push image
-        uses: akhilerm/tag-push-action@v2.2.0
+        uses: askhari/tag-push-action@v2.2.1
         with:
-          src: docker.io/akhilerm/node-disk-manager:ci
+          src: docker.io/askhari/node-disk-manager:ci
           dst: |
-            quay.io/akhilerm/node-disk-manager-amd64:ci
+            quay.io/askhari/node-disk-manager-amd64:ci
 ```
 
 1. Login to all the registries from which you want to pull and push the multiplatform image.
@@ -80,12 +80,12 @@ jobs:
         id: meta
         uses: docker/metadata-action@v6
         with:
-          images: docker.io/akhilerm/node-disk-manager     
+          images: docker.io/askhari/node-disk-manager     
 
       - name: Push image
-        uses: akhilerm/tag-push-action@v2.2.0
+        uses: askhari/tag-push-action@v2.2.0
         with:
-          src: docker.io/akhilerm/node-disk-manager:ci
+          src: docker.io/askhari/node-disk-manager:ci
           dst: |
             ${{ steps.meta.outputs.tags }}
 ```
@@ -98,10 +98,10 @@ The standard docker config path on GitHub runner is `/home/runner/.docker/config
 
 ```yaml
   - name: Push image
-    uses: akhilerm/tag-push-action@v2.2.0
+    uses: askhari/tag-push-action@v2.2.1
     with:
       docker-config-path: /home/myuser/.docker/config.json
-      src: docker.io/akhilerm/node-disk-manager:ci
+      src: docker.io/askhari/node-disk-manager:ci
       dst: |
-        quay.io/akhilerm/node-disk-manager-amd64:ci
+        quay.io/askhari/node-disk-manager-amd64:ci
 ```
